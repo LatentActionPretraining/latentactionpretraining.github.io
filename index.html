@@ -181,37 +181,28 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            To realize effective large-scale, real-world robotic applications, we
-                            must evaluate how well our robot policies adapt to changes in environmental
-                            conditions. Unfortunately, a majority of studies evaluate robot performance
-                            in environments closely resembling or even identical to the training setup.
+                            We introduce <b>L</b>atent <b>A</b>ction <b>P</b>retraining for general <b>A</b>ction models (LAPA), the
+                            first unsupervised method for pretraining Vision-Language-Action (VLA) mod-
+                            els without ground-truth robot action labels. Existing Vision-Language-Action
+                            models require action labels typically collected by human teleoperators during
+                            pretraining, which significantly limits possible data sources and scale. In this
+                            work, we propose a method to learn from internet-scale videos that do not have
+                            robot action labels. We first train an action quantization model leveraging VQ-
+                            VAE-based objective to learn discrete latent actions between image frames, then
+                            pretrain a latent VLA model to predict these latent actions from observations and
+                            task descriptions, and finally finetune the VLA on small-scale robot manipulation
+                            data to map from latent to robot actions. Experimental results demonstrate that
+                            our method significantly outperforms existing techniques that train robot manipu-
+                            lation policies from large-scale videos. Furthermore, it outperforms the state-of-
+                            the-art VLA model trained with robotic action labels on real-world manipulation
+                            tasks that require language conditioning, generalization to unseen objects, and
+                            semantic generalization to unseen instructions. Training only on human manipu-
+                            lation videos also shows positive transfer, opening up the potential for leveraging
+                            web-scale data for robotics foundation model. 
                         </p>
-                        <p>
-                            We present <span class="dperact">Colosseum</span>, a novel simulation
-                            benchmark,with 20 diverse manipulation tasks, that enables systematical
-                            evaluation of models across 14 axes of environmental perturbations.
-                            These perturbations include changes in color, texture, and size of
-                            objects, table-tops, background and object physical properties;  we also vary lighting, distractors,
-                            and camera pose. Using <span class="dperact">Colosseum</span>, we compare
-                            5 state-of-the-art manipulation models to reveal that their success
-                            rate degrades between 30-50% across these perturbation factors.
-                        </p>
-                        <p>
-                            When multiple perturbations are applied in unison, the success rate
-                            degrades &gt; 75%. We identify that changing the number of distractor
-                            objects, target object color, or lighting conditions are the perturbations
-                            that reduce model performance the most. To verify the ecological validity
-                            of our results, we show that our results in simulation are  correlated
-                            (<span class="dperact">R<sup>2</sup> = 0.614</span>) to similar perturbations
-                            in real-world experiments. We open source code for others to use <span class="dperact">Colosseum</span>,
-                            and also release code to 3D print the objects used to replicate the real-world
-                            perturbations. Ultimately, we hope that <span class="dperact">Colosseum</span>
-                            will serve as a benchmark to identify modeling decisions that systematically
-                            improve generalization for manipulation.
-                        </p>
-                        <h2>Leaderboard on THE COLOSSEUM</h2>
+                        <h2>Overview of LAPA</h2>
                         <div style="text-align: center;">
-                            <img src="static/images/img_colosseum_leaderboard.png" alt="Description of the image" style="width: 70%; height: auto;">
+                            <embed src="static/figures/latent_action_pretraining.pdf" type="application/pdf" width="70%" height="auto">
                         </div>
                     </div>
                 </div>
