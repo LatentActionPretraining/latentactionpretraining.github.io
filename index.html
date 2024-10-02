@@ -168,6 +168,9 @@
     <!-- Teaser and Abstract -->
     <section class="section">
         <div class="container is-max-desktop">
+            <div style="text-align: center;">
+                <embed src="static/figures/Figure1.pdf" type="application/pdf" width="100%" height="auto">
+            </div>
             <!-- Abstract -->
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
@@ -175,8 +178,8 @@
                     <div class="content has-text-justified">
                         <p>
                             We introduce <b>L</b>atent <b>A</b>ction <b>P</b>retraining for general <b>A</b>ction models (LAPA), the
-                            first unsupervised method for pretraining Vision-Language-Action (VLA) mod-
-                            els without ground-truth robot action labels. Existing Vision-Language-Action
+                            first unsupervised method for pretraining Vision-Language-Action (VLA) models 
+                            without ground-truth robot action labels. Existing Vision-Language-Action
                             models require action labels typically collected by human teleoperators during
                             pretraining, which significantly limits possible data sources and scale. In this
                             work, we propose a method to learn from internet-scale videos that do not have
@@ -185,17 +188,17 @@
                             pretrain a latent VLA model to predict these latent actions from observations and
                             task descriptions, and finally finetune the VLA on small-scale robot manipulation
                             data to map from latent to robot actions. Experimental results demonstrate that
-                            our method significantly outperforms existing techniques that train robot manipu-
-                            lation policies from large-scale videos. Furthermore, it outperforms the state-of-
+                            our method significantly outperforms existing techniques that train robot manipulation 
+                            policies from large-scale videos. Furthermore, it outperforms the state-of-
                             the-art VLA model trained with robotic action labels on real-world manipulation
                             tasks that require language conditioning, generalization to unseen objects, and
-                            semantic generalization to unseen instructions. Training only on human manipu-
-                            lation videos also shows positive transfer, opening up the potential for leveraging
+                            semantic generalization to unseen instructions. Training only on human manipulation 
+                            videos also shows positive transfer, opening up the potential for leveraging
                             web-scale data for robotics foundation model. 
                         </p>
                         <h2>Overview of LAPA</h2>
                         <div style="text-align: center;">
-                            <embed src="static/figures/latent_action_pretraining.pdf" type="application/pdf" width="70%" height="auto">
+                            <embed src="static/figures/latent_action_pretraining.pdf" type="application/pdf" width="100%" height="auto">
                         </div>
                     </div>
                 </div>
