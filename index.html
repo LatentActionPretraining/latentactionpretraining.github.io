@@ -107,7 +107,7 @@
                                 <a target="_blank" href="https://ai.stanford.edu/~amandlek/">Ajay Mandlekar</a><sup>4</sup>,
                             </span><br>
                             <span class="author-block">
-                                <a target="_blank" href="https://largeworldmodel.github.io/">Reuben Tan</a><sup>3</sup>,
+                                <a target="_blank" href="https://cs-people.bu.edu/rxtan/">Reuben Tan</a><sup>3</sup>,
                             </span>
                             <span class="author-block">
                                 <a target="_blank" href="https://research.nvidia.com/person/yu-wei-chao">Yu-Wei Chao</a><sup>4</sup>,
@@ -154,7 +154,7 @@
                             </span>
                             <!-- Code Link. -->
                             <span class="link-block">
-                                <a target="_blank" href="https://www.omitted.link/" class="external-link button is-normal is-rounded is-dark">
+                                <a target="_blank" href="https://github.com/LatentActionPretraining/LAPA" class="external-link button is-normal is-rounded is-dark">
                                     <span class="icon"><i class="fab fa-github"></i></span>
                                     <span>Code</span>
                                 </a>
@@ -207,12 +207,116 @@
             <!-- /Abstract -->
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
-                    <h2>Overview of LAPA</h2>
+                    <h2 class="title is-3">Overview of LAPA</h2>
                     <div style="text-align: center;">
                         <img src="static/images/method.png" alt="Description of the image" style="width: 100%; height: auto;">
                     </div>
+                    <div class="content has-text-justified">
+                        <p>
+                            LAPA is divided into two stages: Latent Action Quantization and Latent Pretraining. First, we use
+a VQ-VAE based objective to capture the discretized latent delta information between consecutive
+frames in a video. Next, a pretrained VLM is trained to predict the latent action designated by
+the encoder of the Latent Action Quantization model, given the current image and the language
+instruction. After Latent Pretraining, we finetune the VLA model on a small number of ground-truth action-labeled trajectories to map the latent space to the actual action space
+                        </p>
+                    </div>
                 </div>
             </div>
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Experiments</h2>
+                    <div class="content has-text-justified">
+                    <h2 class="title is-4">Real-Robot Experiments</h2></div>
+                    <div style="text-align: center;">
+                        <img src="static/images/real_robot.png" alt="Description of the image" style="width: 100%; height: auto;">
+                    </div>
+                    
+                    <div class="content has-text-justified">
+                        <p>
+                            <h2 class="title is-5">Cross-Embodiment</h2>
+                            For cross-embodiment setting, we pretrain on Bridge (WidowX embodiment) and fine-tune on Franka embodiment.
+                            We compare models that were pretrained on the Bridgev2 dataset. By comparing LAPA (Bridge) which does not leverage action-labeled trajectories during pretraining with models that use action-labeled trajectories during pretraining, we observe an interesting finding: <b>LAPA which is pretrained without ground truth action labels, outperform VLAs that use action labeled pretraining data (ActionVLA and OpenVLA (Bridge)) on average success rate of the 3 tasks.</b> We hypothesize that VLA models pretrained on ground truth action labels have overfitted to the WidowX action space from the Bridgev2 dataset, hampering cross-embodiment adaptability to action distribution shifts during fine-tuning.
+                        </p>
+                    </div>
+
+                    
+                    <div class="content has-text-justified">
+                        <p>
+                            <h2 class="title is-5">Multi-Embodiment</h2>
+                            For multi-embodiment setting, we pretrain on Open-X Embodiment which consists of multiple embodiments. 
+                            <b>When comparing LAPA (Open-X) with OpenVLA (Open-X), we see that LAPA significantly outperforms OpenVLA on 2 out of 3 tasks.</b> This highlights LAPA's effectiveness in a multi-embodiment setting by showcasing its ability to leverage a shared latent action space during pretraining, akin to how language and image representations are utilized. In contrast, contemporary action pretraining methods may suffer from reduced positive transfer between datasets due to the variability in action representation spaces across different embodiments and datasets.
+                        </p>
+                    </div>
+                    <div class="content has-text-justified">
+                        <h2 class="title is-4">Learning from Human Manipulation Videos</h2></div>
+                        <div style="text-align: center;">
+                            <img src="static/images/sthv2.png" alt="Description of the image" style="width: 90%; height: auto;">
+                        </div>
+                        
+                        <div class="content has-text-justified">
+                            <p>
+                                To extend LAPA on human manipulation videos where the action labels are not present, we pretrain LAPA on Something-Something V2 Dataset (220K videos) and fine-tune on robot embodiment. The embodiment gap for this case is extreme (human to robot). <b>Surprisingly, we can see that LAPA trained with human videos outperforms OpenVLA (Bridge) on average.</b> Despite the larger embodiment gap for LAPA (Human to robot vs. Robot to robot), it learns a better prior for robot manipulation. This result highlights the potential of raw human manipulation videos from the web compared to expensive robot manipulation data, which requires time-intensive teleoperation to collect. We expect that applying our approach on large-scale internet videos (e.g., YouTube videos) could unlock the potential for large-scale pretraining of a generalist action foundational model, similar to foundational models in Natural Language Processing or Computer Vision.
+                            </p>
+                        </div>
+                </div>
+            </div>
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Analyzing Latent Actions</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            For interpretation, we condition the current image observation and each latent action on the decoder of the latent action quantization model, and present the reconstructed images.
+                        </p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <img src="static/images/latent_analysis.png" alt="Description of the image" style="width: 90%; height: auto;">
+                    </div>
+                    <div class="content has-text-justified">
+                        <p>
+                            We observe that each latent action can be mapped into a semantic action of the robot arm. For example, latent action 0 corresponds to moving a bit left and forward.
+                        </p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <img src="static/images/sthv2_camera.png" alt="Description of the image" style="width: 90%; height: auto;">
+                    </div>
+                    <div class="content has-text-justified">
+                        <p>
+                            For human videos where the camera view changes in a single video, we observe that each latent action can be mapped into a semantic action including camera movements. For example, latent action [3,5,2,7] corresponds to moving the camera a bit down while [4,2,0,0] corresponds to moving the camera slightly up.
+                        </p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="static/images/latent_analysis_OpenX.png" alt="Description of the image" style="width: 90%; height: auto;">
+                    </div>
+                    <div class="content has-text-justified">
+                        <p>
+                            For multi-embodiment setting, we observe that each latent action can be mapped into a similar semantic action similar semantic action even though the embodiments are different. <b>This supports our previous claim that latent actions are learned in a shared representation space, regardless of the embodiment or dataset, facilitating stronger positive transfer across diverse datasets.</b>
+                        </p>
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <!-- Left GIF with label -->
+                        <div style="text-align: center;">
+                            <img src="static/images/rollout.gif" alt="Rollout GIF" style="width: 65%; height: auto;">
+                            <br><b>Generated Rollout from LAPA</b>
+                        </div>
+                        <!-- Right GIF with label -->
+                        <div style="text-align: center;">
+                            <img src="static/images/rollout_gt.gif" alt="Rollout Ground Truth GIF" style="width: 65%; height: auto;">
+                            <br><b>Ground Truth Trajectory</b>
+                        </div>
+                    </div>
+                    <div class="content has-text-justified">
+                        <p>
+                            We analyze the coarse-grained planning capability of LAPA through a closed-loop rollout by using LAPA model that has only undergone pretraining. When conditioned on the current observation and the instruction to "take the broccoli out of the pot", LAPA generates robot trajectories that successfully reaches for the broccoli, moves down to grab it, and, as the arm moves away from the pot, the broccoli disappears. This shows the potential for LAPA as a general-purpose robotic world model, not only predicting actions but also the outcomes of the actions. 
+                        </p>
+                    
+                    
+
+                </div>
+            </div>
+
+            
         </div>
     </section>
 
