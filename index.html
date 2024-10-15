@@ -217,7 +217,7 @@
 a VQ-VAE based objective to capture the discretized latent delta information between consecutive
 frames in a video. Next, a pretrained VLM is trained to predict the latent action designated by
 the encoder of the Latent Action Quantization model, given the current image and the language
-instruction. After Latent Pretraining, we finetune the VLA model on a small number of ground-truth action-labeled trajectories to map the latent space to the actual action space
+instruction. After Latent Pretraining, we finetune the VLA model on a small number of ground-truth action-labeled trajectories to map the latent space to the actual action space.
                         </p>
                     </div>
                 </div>
@@ -234,8 +234,8 @@ instruction. After Latent Pretraining, we finetune the VLA model on a small numb
                     <div class="content has-text-justified">
                         <p>
                             <h2 class="title is-5">Cross-Embodiment</h2>
-                            For cross-embodiment setting, we pretrain on Bridge (WidowX embodiment) and fine-tune on Franka embodiment.
-                            We compare models that were pretrained on the Bridgev2 dataset. By comparing LAPA (Bridge) which does not leverage action-labeled trajectories during pretraining with models that use action-labeled trajectories during pretraining, we observe an interesting finding: <b>LAPA which is pretrained without ground truth action labels, outperform VLAs that use action labeled pretraining data (ActionVLA and OpenVLA (Bridge)) on average success rate of the 3 tasks.</b> We hypothesize that VLA models pretrained on ground truth action labels have overfitted to the WidowX action space from the Bridgev2 dataset, hampering cross-embodiment adaptability to action distribution shifts during fine-tuning.
+                            For cross-embodiment setting, we pretrain the VLAs on the WidowX embodiment (Bridgev2) and fine-tune them on the data collected with the Franka robot.
+                            By comparing LAPA (Bridge) which does not leverage action-labeled trajectories during pretraining with models that use action-labeled trajectories during pretraining, we observe an interesting finding: <b>LAPA which is pretrained without ground truth action labels, outperform VLAs that use action labeled pretraining data (ActionVLA (Bridge) and OpenVLA (Bridge)) on average success rate of the 3 tasks.</b> We hypothesize that VLA models pretrained on ground truth action labels have overfitted to the WidowX action space from the Bridgev2 dataset, hampering cross-embodiment adaptability to action distribution shifts during fine-tuning.
                         </p>
                     </div>
 
@@ -243,8 +243,8 @@ instruction. After Latent Pretraining, we finetune the VLA model on a small numb
                     <div class="content has-text-justified">
                         <p>
                             <h2 class="title is-5">Multi-Embodiment</h2>
-                            For multi-embodiment setting, we pretrain on Open-X Embodiment which consists of multiple embodiments. 
-                            <b>When comparing LAPA (Open-X) with OpenVLA (Open-X), we see that LAPA significantly outperforms OpenVLA on 2 out of 3 tasks.</b> This highlights LAPA's effectiveness in a multi-embodiment setting by showcasing its ability to leverage a shared latent action space during pretraining, akin to how language and image representations are utilized. In contrast, contemporary action pretraining methods may suffer from reduced positive transfer between datasets due to the variability in action representation spaces across different embodiments and datasets.
+                            For multi-embodiment setting, we pretrain the VLAs on Open-X Embodiment which consists of robot trajectories of multiple embodiments. 
+                            <b>When comparing LAPA (Open-X) with OpenVLA (Open-X), we see that LAPA significantly outperforms OpenVLA on 2 out of 3 tasks.</b> This highlights LAPA's effectiveness in a multi-embodiment setting by showcasing its ability to leverage a shared latent action space during pretraining, akin to how language and image representations are learned in an unsupervised manner. In contrast, contemporary action pretraining methods may suffer from reduced positive transfer between datasets due to the variability in action representation spaces across different embodiments and datasets.
                         </p>
                     </div>
                     <div class="content has-text-justified">
