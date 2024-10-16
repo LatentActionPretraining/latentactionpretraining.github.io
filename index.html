@@ -328,11 +328,223 @@ instruction. After Latent Pretraining, we finetune the VLA model on a small numb
                         <p>
                             We analyze the coarse-grained planning capability of LAPA through a closed-loop rollout by using LAPA model that has only undergone pretraining. When conditioned on the current observation and the instruction to "take the broccoli out of the pot", LAPA generates robot trajectories that successfully reaches for the broccoli, moves down to grab it, and, as the arm moves away from the pot, the broccoli disappears. This shows the potential for LAPA as a general-purpose robotic world model, not only predicting actions but also the outcomes of the actions. 
                         </p>
-                    
-                    
-
+                    </div>
                 </div>
             </div>
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Rollout Videos</h2>
+                    <div class="content has-text-justified">
+                        <h2 class="title is-4">Seen Objects, Unseen Combinations</h2></div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <!-- Left GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Knock mustard down</b>
+                            <img src="static/videos/real_videos/knocking_seen_mustard_scratch_fail.gif" alt="Scratch" style="width: 65%; height: auto;">
+                            <br><b>Scratch</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <!-- Right GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Knock mustard down</b>
+                            <img src="static/videos/real_videos/knocking_seen_mustard_openvla_fail.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Knock mustard down</b>
+                            <img src="static/videos/real_videos/knocking_seen_mustard_lapa_success.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">✅</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <!-- Left GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Pick orange block, put in sink</b>
+                            <img src="static/videos/real_videos/pick_seen_orange_scratch_fail.gif" alt="Scratch" style="width: 65%; height: auto;">
+                            <br><b>Scratch</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <!-- Right GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Pick orange block, put in sink</b>
+                            <img src="static/videos/real_videos/pick_seen_orange_openvla_success.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">✅</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Pick orange block, put in sink</b>
+                            <img src="static/videos/real_videos/pick_seen_orange_lapa_success.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">✅</span>
+                        </div>
+                    </div>
+                    <div class="content has-text-justified">
+                        <h2 class="title is-4">Unseen Objects</h2></div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <!-- Left GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Knock pringles down</b>
+                            <img src="static/videos/real_videos/knocking_unseen_pringles_scatch_fail.gif" alt="Scratch" style="width: 65%; height: auto;">
+                            <br><b>Scratch</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <!-- Right GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Knock pringles down</b>
+                            <img src="static/videos/real_videos/knocking_unseen_pringles_openvla_half.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Knock pringles down</b>
+                            <img src="static/videos/real_videos/knocking_unseen_pringles_openvla_half.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <b>Cover donut with towel</b>
+                            <img src="static/videos/real_videos/covering_unseen_donut_scratch_half.gif" alt="Scratch" style="width: 65%; height: auto;">
+                            <br><b>Scratch</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Cover donut with towel</b>
+                            <img src="static/videos/real_videos/covering_unseen_donut_openvla_fail.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Cover donut with towel</b>
+                            <img src="static/videos/real_videos/covering_unseen_donut_lapa_success.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">✅</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <b>Pick paprika, put in sink</b>
+                            <img src="static/videos/real_videos/pick_unseen_yellow_scratch_fail.gif" alt="Scratch" style="width: 65%; height: auto;">
+                            <br><b>Scratch</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Pick paprika, put in sink</b>
+                            <img src="static/videos/real_videos/pick_unseen_yellow_openvla_success.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">✅</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Pick paprika, put in sink</b>
+                            <img src="static/videos/real_videos/pick_unseen_yellow_lapa_success.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">✅</span>
+                        </div>
+                    </div>
+                    <div class="content has-text-justified">
+                        <h2 class="title is-4">Unseen Instructions</h2></div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <!-- Left GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Knock an object for cleaning</b>
+                            <img src="static/videos/real_videos/knocking_semantic_clean_scratch_fail.gif" alt="Scratch" style="width: 65%; height: auto;">
+                            <br><b>Scratch</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <!-- Right GIF with label -->
+                        <div style="text-align: center;">
+                            <b>Knock an object for cleaning</b>
+                            <img src="static/videos/real_videos/knocking_semantic_clean_openvla_fail.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Knock an object for cleaning</b>
+                            <img src="static/videos/real_videos/knocking_semantic_clean_lapa_sucess.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">✅</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <b>Cover a yellow object with towel</b>
+                            <img src="static/videos/real_videos/covering_semantic_yellow_scratch_fail.gif" alt="Scratch" style="width: 65%; height: auto;">
+                            <br><b>Scratch</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Cover a yellow object with towel</b>
+                            <img src="static/videos/real_videos/covering_semantic_yellow_openvla_half.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Cover a yellow object with towel</b>
+                            <img src="static/videos/real_videos/covering_semantic_yellow_lapa_half.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                    </div>
+                    <div class="content has-text-justified">
+                        <h2 class="title is-4">Bi-Manual</h2>
+                        <!-- <p>Both OpenVLA and LAPA struggles on Bi-manual robot setup, indicating much room for improvement.</p> -->
+                    </div>
+            
+                    <div class="content has-text-justified">
+                        <h2 class="title is-5">Unseen Object Combinations</h2></div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 0px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <b>Put gray plate on container and peach on plate</b>
+                            <img src="static/videos/real_videos/bimanual_seen_openvla.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Put gray plate on container and peach on plate</b>
+                            <img src="static/videos/real_videos/bimanual_seen_lapa.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                    </div>
+                    <div class="content has-text-justified">
+                        <h2 class="title is-5">Unseen Objects</h2></div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 0px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <b>Put white plate on container and soup on plate</b>
+                            <img src="static/videos/real_videos/bimanual_unseen_openvla.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Put white plate on container and soup on plate</b>
+                            <img src="static/videos/real_videos/bimanual_unseen_lapa.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                    </div>
+                    <div class="content has-text-justified">
+                        <h2 class="title is-5">Unseen Instructions</h2></div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 0px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <b>Put darker plate on container and round object</b>
+                            <img src="static/videos/real_videos/bimanual_semantic_openvla.gif" alt="OpenVLA" style="width: 65%; height: auto;">
+                            <br><b>OpenVLA</b>
+                            <br><span style="font-size: 24px;">❌</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <b>Put darker plate on container and round object</b>
+                            <img src="static/videos/real_videos/bimanual_semantic_lapa.gif" alt="LAPA" style="width: 65%; height: auto;">
+                            <br><b>LAPA</b>
+                            <br><span style="font-size: 24px;">⚠️</span>
+                        </div>
+                    </div>
+                    <p>Both OpenVLA and LAPA struggles on Bi-manual robot setup, indicating much room for improvement.</p>
+                </div>
+            </div>
+
 
             
         </div>
