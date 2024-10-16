@@ -31,9 +31,24 @@ body {
 }
 
 .teaser video {
-  object-fit: fill;
-  
+  object-fit: cover;
+  width: 100%; /* Ensures the video takes up full width */
+  height: auto; /* Adjusts height automatically */
 }
+
+@media (max-width: 768px) {
+  .teaser .hero-body {
+    padding-top: 0;
+    padding-bottom: 1rem; /* Reduce padding for mobile */
+  }
+
+  .teaser video {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Keeps aspect ratio intact */
+  }
+}
+
 #glass{
   margin-left: -10px;
 }
